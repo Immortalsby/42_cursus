@@ -6,17 +6,16 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 21:50:22 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/05 21:18:41 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/07 17:22:49 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Appends src to string dst of size siz (unlike strncat, siz is the
-** full size of dst, not space left).  At most siz-1 characters
-** will be copied.  Always NUL terminates (unless siz <= strlen(dst)).
-** Returns strlen(src) + MIN(siz, strlen(initial dst)).
- * If retval >= siz, truncation occurred.
- */
+** Appends src to string dst of size siz (unlike strncat, siz is the full size
+** of dst, not space left).  At most siz-1 characters will be copied.  Always
+** NUL terminates (unless siz <= strlen(dst)). Returns strlen(src) +
+** MIN(siz, strlen(initial dst)). If retval >= siz, truncation occurred.
+*/
 
 #include "libft.h"
 

@@ -6,13 +6,13 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 11:52:33 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/03 21:28:10 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/07 17:16:18 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** This function copies the value of c (converted to an unsigned char) into 
-** each of the first size bytes of the object beginning at block. It returns 
+** This function copies the value of c (converted to an unsigned char) into
+** each of the first size bytes of the object beginning at block. It returns
 ** the value of block.
 */
 
@@ -21,7 +21,7 @@
 void	*ft_memset(void *str, int c, size_t n)
 {
 	unsigned char	value;
-	size_t		size;
+	size_t			size;
 
 	if (str == NULL)
 		return (NULL);

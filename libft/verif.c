@@ -8,14 +8,14 @@ void	check_memset()
 {
 	char str1[] = "thisistest";
 	char str2[] = "thisistest";
-	char nul1[2] = "";
-	char nul2[2] = "";
+	char *nul1 = malloc(5);
+	char *nul2 = malloc(5);
 	int int1[] = {12,34};
 	int int2[] = {12,34};
 	memset(str1, '-', 3);
 	ft_memset(str2, '-', 3);
-	memset(nul1, '-', 1);
-	ft_memset(nul2, '-', 1);
+	memset(nul1, '-', 10);
+	ft_memset(nul2, '-', 10);
 	memset(int1, '-', 1);
 	ft_memset(int2, '-', 1);
 	printf("-----Test for memset-----\n***Result for str:\"thisistest\", size 5, replace \'-\':\nMy:%s\nOri:%s\n***Result for nul str:\nMy:%s\nOri:%s\n***Result for int: 12, 34, replace 12 for -\nMy:%d\nOri:%d\n", str2, str1, nul2, nul1, int2[0], int1[0]);
@@ -221,7 +221,7 @@ void	check_strnstr()
 
 void	check_atoi()
 {
-	printf("-----Test for atoi-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_atoi("123"), atoi("123"), ft_atoi("abc"), atoi("abc"), ft_atoi("2147483648"), ft_atoi("21147483648"));
+	printf("-----Test for atoi-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_atoi("123"), atoi("123"), ft_atoi("abc"), atoi("abc"), ft_atoi("21147483648"), ft_atoi("21147483648"));
 }
 
 void	check_calloc()
@@ -244,9 +244,14 @@ void	check_strdup()
 	printf("-----Test for strdup-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n***Result3:\nMy:%s\nOri:%s\n", res2, res1, res4, res3, res6, res5);
 }
 
+void check_substr()
+{	
+	printf("-----Test for substr-----\n***Result1 for qwertyuiop, start with r, len: 5:\n%s\n***Result2 for qwertyuiop, start with p, len: 5:\n%s\n***Result3 for qwertyuiop, start with q, len: 100:\n%s\n", ft_substr("qwertyuiop", 3, 5), ft_substr("qwertyuiop", 9, 5), ft_substr("qwertyuiop", 0, 100));
+}
+
 int	main()
 {
-	check_memset();
+/*	check_memset();
 	check_bzero();
 	check_memcpy();
 	check_memccpy();
@@ -269,6 +274,7 @@ int	main()
 	check_strnstr();
 	check_atoi();
 	check_calloc();
-	check_strdup();
+	check_strdup();*/
+	check_substr();
 	return (0);
 }

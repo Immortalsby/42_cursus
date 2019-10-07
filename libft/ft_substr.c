@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calloc.c                                           :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 13:49:11 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/07 14:38:21 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/07 18:17:32 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/07 19:49:54 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** This function allocates a block long enough to contain a vector of count
-**elements, each of size eltsize. Its contents are cleared to zero before
-**calloc returns.
-*/
-
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t eltsize)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t size;
-	void *value;
+	char	*d;
+	size_t	i;
+	size_t	size;
 
-	size = count * eltsize;
-	value = malloc(size);
-	if (value != 0)
-		ft_memset(value, 0, size);
-	return (value);
+	i = 0;
+	size = 0;
+	if (start >= ft_strlen(s))
+		size = 1;
+	else
+		size = ft_strlen(s) - start;
+	if (len < size)
+		size = len;
+	d = (char *)malloc(sizeof(char *) * (size + 1));
+	if (d == NULL)
+		return (NULL);
+	while (s[start] && len > 0 && size)
+	{
+		d[i] = s[start];
+		i++;
+		start++;
+		size--;
+	}
+	return (d);
 }

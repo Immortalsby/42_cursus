@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 18:30:00 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/03 23:20:01 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/07 17:14:44 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_memcmp(const void *a1, const void *a2, size_t size)
 {
 	const unsigned char	*s1;
 	const unsigned char	*s2;
-	size_t			i;
+	size_t				i;
 
 	if (a1 == a2 || size == 0)
 		return (0);
@@ -34,7 +34,7 @@ int	ft_memcmp(const void *a1, const void *a2, size_t size)
 	i = 0;
 	while (i < size)
 	{
-		if(s1[i] != s2[i])
+		if (s1[i] != s2[i])
 			return (s1[i] - s2[i]);
 		i++;
 	}

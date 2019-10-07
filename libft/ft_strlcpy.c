@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:26:32 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/07 16:37:43 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/07 17:24:01 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,4 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	}
 	dest[i] = '\0';
 	return (ft_strlen(src));
-}  
+}

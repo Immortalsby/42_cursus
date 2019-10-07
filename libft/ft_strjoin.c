@@ -1,24 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
+/*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/01 09:57:42 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/07 17:12:49 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/07 19:51:25 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/07 19:51:27 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** This is a partially obsolete alternative for memset
-** Note that it is not as general as memset, because the only value it can
-** store is zero.
-*/
 
-#include "libft.h"
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
