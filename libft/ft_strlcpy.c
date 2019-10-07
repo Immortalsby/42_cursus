@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/01 19:40:08 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/04 00:08:01 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/02 10:26:32 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/07 16:37:43 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** char * strcpy (char *restrict to, const char *restrict from)
-** This copies bytes from the string from (up to and including the
-** terminating null byte) into the string to. Like memcpy, this function
-** has undefined results if the strings overlap. The return value is the
-** value of to.
+** strlcpy() copies up to n - 1	characters from	the string src to dst,
+** NUL-terminating the result	if dstsize is not 0.
 */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int n;
+	size_t i;
 
-	n = 0;
-	while (src[n] != 0)
+	i = 0;
+	while (--size && src[i])
 	{
-		dest[n] = src[n];
-		n++;
+		dest[i] = src[i];
+		i++;
 	}
-	dest[n] = '\0';
-	return (dest);
-}
+	dest[i] = '\0';
+	return (ft_strlen(src));
+}  

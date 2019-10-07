@@ -2,6 +2,7 @@
 
 #include "libft.h"
 #include <stdio.h>
+#include <ctype.h>
 
 void	check_memset()
 {
@@ -120,21 +121,6 @@ void	check_memcmp()
 	printf("-----Test for memcmp-----\n***Result for \'memchr can be very useful......\':\nMy:%d\nOri:%d\n***Result for \'memcmp not good\' and\'memcmp is good\':\nMy:%d\nOri:%d\n", res2, res1, res4, res3);
 }
 
-void	check_strdup()
-{
-	char str1[] = "memchr can be very useful......";
-	char str2[] = "memcmp not good";
-	char *str3 = "memcmp is good";
-	char *res1, *res2, *res3, *res4, *res5, *res6;
-	res1 = strdup(str1);
-	res2 = ft_strdup(str1);
-	res3 = strdup(str2);
-	res4 = ft_strdup(str2);
-	res5 = strdup(str3);
-	res6 = strdup(str3);
-	printf("-----Test for strdup-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n***Result3:\nMy:%s\nOri:%s\n", res2, res1, res4, res3, res6, res5);
-}
-
 void	check_strlen()
 {
 	char str1[2]="";
@@ -143,49 +129,39 @@ void	check_strlen()
 	printf("-----Test for strlen-----\n***Result1:\nMy:%lu\nOri:%lu\n***Result2:\nMy:%lu\nOri:%lu\n***Result3:\nMy:%lu\nOri:%lu\n", ft_strlen(str1), strlen(str1), ft_strlen(str2), strlen(str2), ft_strlen(str3), strlen(str3));
 }
 
-void	check_strcpy()
+void	check_isalpha()
 {
-	char str1[10]="";
-	char str2[] = "qwerty";
-	char str3[10]="";
-	char str4[] = "qwerty";
-	printf("-----Test for strcpy-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n", ft_strcpy(str1, str2), strcpy(str3, str4), ft_strcpy(str2, str1), strcpy(str4, str3));
+	printf("-----Test for isalpha-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_isalpha('4'), isalpha('4'), ft_isalpha('t'), isalpha('t'), ft_isalpha(';'), isalpha(';'));
 }
 
-void	check_strncpy()
+void	check_isdigit()
 {
-	char str1[10]="123123123";
-	char str2[] = "qwerty";
-	char str3[10]="123123123";
-	char str4[] = "qwerty";
-	printf("-----Test for strncpy-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n", ft_strncpy(str1, str2, 4), strncpy(str3, str4, 4), ft_strncpy(str2, str1, 2), strncpy(str4, str3, 2));
+	printf("-----Test for isdigit-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_isdigit('4'), isdigit('4'), ft_isdigit('t'), isdigit('t'), ft_isdigit(';'), isdigit(';'));
 }
 
-void	check_strcat()
+void	check_isalnum()
 {
-	char str1[123]="123123123";
-	char str2[123] = "qwerty";
-	char str3[123]="123123123";
-	char str4[123] = "qwerty";
-	printf("-----Test for strcat-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n", ft_strcat(str1, str2), strcat(str3, str4), ft_strcat(str2, str1), strcat(str4, str3));
+	printf("-----Test for isalnum-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_isalnum(-4), isalnum(-4), ft_isalnum('t'), isalnum('t'), ft_isalnum(';'), isalnum(';'));
 }
 
-void	check_strncat()
+void	check_isascii()
 {
-	char str1[123]="123123123";
-	char str2[123] = "qwerty";
-	char str3[123]="123123123";
-	char str4[123] = "qwerty";
-	printf("-----Test for strncat-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n", ft_strncat(str1, str2, 3), strncat(str3, str4, 3), ft_strncat(str2, str1, 4), strncat(str4, str3, 4));
+	printf("-----Test for isascii-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_isascii(-4), isascii(-4) ,ft_isascii('t'), isascii('t'), ft_isascii(';'), isascii(';'));
 }
 
-void	check_strlcat()
+void	check_isprint()
 {
-	char str1[123]="123123123";
-	char str2[123] = "qwerty";
-	char str3[123]="123123123";
-	char str4[123] = "qwerty";
-	printf("-----Test for strlcat-----\n***Result1:\nMy:%zu\nOri:%zu\n***Result2:\nMy:%zu\nOri:%zu\n", ft_strlcat(str1, str2, 12), strlcat(str3, str4, 12), ft_strlcat(str2, str1, 15), strlcat(str4, str3, 15));
+	printf("-----Test for isprint-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_isprint(-4), isprint(-4), ft_isprint('t'), isprint('t'), ft_isprint(';'), isprint(';'));
+}
+
+void	check_toupper()
+{
+	printf("-----Test for toupper-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_toupper(-4), toupper(-4), ft_toupper('t'), toupper('t'), ft_toupper(';'), toupper(';'));
+}
+
+void	check_tolower()
+{
+	printf("-----Test for tolower-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_tolower(-4), tolower(-4), ft_tolower('t'), tolower('t'), ft_tolower(';'), tolower(';'));
 }
 
 void	check_strchr()
@@ -202,38 +178,6 @@ void	check_strrchr()
 	printf("-----Test for strrchr-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n", ft_strrchr(str1, '.'), strrchr(str1, '.'), ft_strrchr(str2, '.'), strrchr(str2, '.'));
 }
 
-void	check_strstr()
-{
-	char str1[123]="123123123";
-	char str2[123] = "qwerty";
-	char str3[123]="";
-	char str4[123] = "!@#$";
-	printf("-----Test for strstr-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n***Result3:\nMy:%s\nOri:%s\n***Result4:\nMy:%s\nOri:%s\n", ft_strstr(str1, "23"), strstr(str1, "23"), ft_strstr(str2, "23"), strstr(str2, "23"), ft_strstr(str3, ""), strstr(str3, ""), ft_strstr(str4, "#"), strstr(str4, "#"));
-}
-
-void	check_strnstr()
-{
-	char str1[123]="123123123";
-	char str2[123] = "qwerty";
-	char str3[123]="";
-	char str4[123] = "!@#$";
-	printf("-----Test for strnstr-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n***Result3:\nMy:%s\nOri:%s\n***Result4:\nMy:%s\nOri:%s\n", ft_strnstr(str1, "23", 3), strnstr(str1, "23", 3), ft_strnstr(str2, "ty", 10), strnstr(str2, "ty", 10), ft_strnstr(str3, "", 10), strnstr(str3, "", 10), ft_strnstr(str4, "#", 3), strnstr(str4, "#", 3));
-}
-
-void	check_strcmp()
-{
-	char str1[] = "memchr can be very useful......";
-	char str2[] = "memchr can be very useful......";
-	char str3[] = "memcmp is not good";
-	char str4[] = "memcmp is good";
-	int res1, res2, res3, res4;
-	res1 = strcmp(str1, str2);
-	res2 = ft_strcmp(str1, str2);
-	res3 = strcmp(str3, str4);
-	res4 = ft_strcmp(str3, str4);
-	printf("-----Test for strcmp-----\n***Result for \'memchr can be very useful......\':\nMy:%d\nOri:%d\n***Result for \'memcmp not good\' and\'memcmp is good\':\nMy:%d\nOri:%d\n", res2, res1, res4, res3);
-}
-
 void	check_strncmp()
 {
 	char str1[] = "memchr can be very useful......";
@@ -248,6 +192,58 @@ void	check_strncmp()
 	printf("-----Test for strncmp-----\n***Result for \'memchr can be very useful......\':\nMy:%d\nOri:%d\n***Result for \'memcmp not good\' and\'memcmp is good\':\nMy:%d\nOri:%d\n", res2, res1, res4, res3);
 }
 
+void	check_strlcat()
+{
+	char str1[123] = "123123123";
+	char str2[123] = "qwerty";
+	char str3[123] = "123123123";
+	char str4[123] = "qwerty";
+	printf("-----Test for strlcat-----\n***Result1:\nMy:%zu\nOri:%zu\n***Result2:\nMy:%zu\nOri:%zu\n", ft_strlcat(str1, str2, 12), strlcat(str3, str4, 12), ft_strlcat(str2, str1, 15), strlcat(str4, str3, 15));
+}
+
+void	check_strlcpy()
+{
+	char str1[123] = "123123123";
+	char str2[123] = "qwerty";
+	char str3[123] = "123123123";
+	char str4[123] = "qwerty";
+	printf("-----Test for strlcpy-----\n***Result1:\nMy:%zu\nOri:%zu\n***Result2:\nMy:%zu\nOri:%zu\n", ft_strlcpy(str1, str2, 12), strlcpy(str3, str4, 12), ft_strlcpy(str2, str1, 15), strlcpy(str4, str3, 15));
+}
+
+void	check_strnstr()
+{
+	char str1[123]="123123123";
+	char str2[123] = "qwerty";
+	char str3[123]="";
+	char str4[123] = "!@#$";
+	printf("-----Test for strnstr-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n***Result3:\nMy:%s\nOri:%s\n***Result4:\nMy:%s\nOri:%s\n", ft_strnstr(str1, "23", 3), strnstr(str1, "23", 3), ft_strnstr(str2, "ty", 10), strnstr(str2, "ty", 10), ft_strnstr(str3, "", 10), strnstr(str3, "", 10), ft_strnstr(str4, "#", 3), strnstr(str4, "#", 3));
+}
+
+void	check_atoi()
+{
+	printf("-----Test for atoi-----\n***Result1:\nMy:%d\nOri:%d\n***Result2:\nMy:%d\nOri:%d\n***Result3:\nMy:%d\nOri:%d\n", ft_atoi("123"), atoi("123"), ft_atoi("abc"), atoi("abc"), ft_atoi("2147483648"), ft_atoi("21147483648"));
+}
+
+void	check_calloc()
+{
+	printf("-----Test for calloc-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n***Result3:\nMy:%s\nOri:%s\n", (char *)ft_calloc(4, 9), (char *)calloc(4, 9), (char *)ft_calloc(9, 4), (char *)calloc(9, 4), (char *)ft_calloc(9, 9), (char *)calloc(9, 9));
+}
+
+void	check_strdup()
+{
+	char str1[] = "memchr can be very useful......";
+	char str2[] = "memcmp not good";
+	char *str3 = "memcmp is good";
+	char *res1, *res2, *res3, *res4, *res5, *res6;
+	res1 = strdup(str1);
+	res2 = ft_strdup(str1);
+	res3 = strdup(str2);
+	res4 = ft_strdup(str2);
+	res5 = strdup(str3);
+	res6 = strdup(str3);
+	printf("-----Test for strdup-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n***Result3:\nMy:%s\nOri:%s\n", res2, res1, res4, res3, res6, res5);
+}
+
 int	main()
 {
 	check_memset();
@@ -257,18 +253,22 @@ int	main()
 	check_memmove();
 	check_memchr();
 	check_memcmp();
-	check_strdup();
 	check_strlen();
-	check_strcpy();
-	check_strncpy();
-	check_strcat();
-	check_strncat();
-	check_strlcat();
+	check_isalpha();
+	check_isdigit();
+	check_isalnum();
+	check_isascii();
+	check_isprint();
+	check_toupper();
+	check_tolower();
 	check_strchr();
 	check_strrchr();
-	check_strstr();
-	check_strnstr();
-	check_strcmp();
 	check_strncmp();
+	check_strlcat();
+	check_strlcpy();
+	check_strnstr();
+	check_atoi();
+	check_calloc();
+	check_strdup();
 	return (0);
 }

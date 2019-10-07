@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 11:25:28 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/02 18:11:51 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/07 16:40:11 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 char	*ft_strnstr(const char *str, const char *c, size_t n)
 {
-	int i;
-	int pos;
-	int len;
+	size_t i;
+	size_t pos;
+	size_t len;
 
 	i = 0;
 	pos = 0;

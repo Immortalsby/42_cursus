@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshi <bshi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/28 19:56:41 by bshi              #+#    #+#             */
-/*   Updated: 2019/09/29 16:34:35 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/03 00:07:29 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/07 16:43:15 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar(char c)
+int	ft_toupper(int c)
 {
-	write(1, &c, 1);
-}
-
-void	ft_print_alphabet(void)
-{
-	char a;
-
-	a = 'a';
-	while (a <= 'z')
-	{
-		ft_putchar(a);
-		a = a + 1;
-	}
+	if (c >= 'a' && c <= 'z')
+		c = c - 'a' + 'A';
+	return (c);
 }
