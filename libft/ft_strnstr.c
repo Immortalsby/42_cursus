@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 11:25:28 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/07 17:34:55 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/08 18:09:48 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*ft_strnstr(const char *str, const char *c, size_t n)
 	size_t len;
 
 	i = 0;
-	pos = 0;
 	len = 0;
 	while (c[len] != '\0')
 		len++;
@@ -32,13 +31,13 @@ char	*ft_strnstr(const char *str, const char *c, size_t n)
 		return ((char *)str);
 	while (str[i] && i <= n)
 	{
-		while (c[pos] == str[i + pos])
+		pos = 0;
+		while (c[pos] == str[i + pos] && i + pos <= n)
 		{
 			if (pos == len - 1)
 				return ((char *)str + i);
 			pos++;
 		}
-		pos = 0;
 		i++;
 	}
 	return (NULL);

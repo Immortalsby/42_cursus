@@ -212,11 +212,11 @@ void	check_strlcpy()
 
 void	check_strnstr()
 {
-	char str1[123]="123123123";
-	char str2[123] = "qwerty";
+	char str1[123]="lorem ipsum dolor sit amet";
+	char str2[123] = "dolor";
 	char str3[123]="";
 	char str4[123] = "!@#$";
-	printf("-----Test for strnstr-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n***Result3:\nMy:%s\nOri:%s\n***Result4:\nMy:%s\nOri:%s\n", ft_strnstr(str1, "23", 3), strnstr(str1, "23", 3), ft_strnstr(str2, "ty", 10), strnstr(str2, "ty", 10), ft_strnstr(str3, "", 10), strnstr(str3, "", 10), ft_strnstr(str4, "#", 3), strnstr(str4, "#", 3));
+	printf("-----Test for strnstr-----\n***Result1:\nMy:%s\nOri:%s\n***Result2:\nMy:%s\nOri:%s\n***Result3:\nMy:%s\nOri:%s\n***Result4:\nMy:%s\nOri:%s\n", ft_strnstr(str1, "dolor", 15), strnstr(str1, "dolor", 15), ft_strnstr(str2, "ty", 10), strnstr(str2, "ty", 10), ft_strnstr(str3, "", 10), strnstr(str3, "", 10), ft_strnstr(str4, "#", 3), strnstr(str4, "#", 3));
 }
 
 void	check_atoi()
@@ -249,6 +249,50 @@ void check_substr()
 	printf("-----Test for substr-----\n***Result1 for qwertyuiop, start with r, len: 5:\n%s\n***Result2 for qwertyuiop, start with p, len: 5:\n%s\n***Result3 for qwertyuiop, start with q, len: 100:\n%s\n", ft_substr("qwertyuiop", 3, 5), ft_substr("qwertyuiop", 9, 5), ft_substr("qwertyuiop", 0, 100));
 }
 
+void check_strjoin()
+{
+	printf("-----Test for substr-----\n***Result1 for qwertyuiop and 123:\n%s\n***Result2 for NULL and nothingbefore:\n%s\n***Result3 for nothingbehind and NULL:\n%s\n", ft_strjoin("qwertyuiop", "123"), ft_strjoin("", "nothingbefore"), ft_strjoin("nothingbehind", ""));
+}
+
+void check_strtrim()
+{
+	printf("-----Test for strtrim-----\n***Result1 for 1234***1234 and 123:\n%s\n***Result2 for pppp and 12345p:\n%s\n***Result3 for yu yu yu and 9\t:\n%s\n", ft_strtrim("1234***1234", "123"), ft_strtrim("pppp", "123456p"), ft_strtrim("yu yu yu", "9\t"));
+}
+
+void check_strsplit()
+{
+	int i = 0;
+	printf("-----Test for split-----\n***Result for \' qwe rfty uif op\' and \' \':\n");
+	for (i = 0; i < 6; i++)
+		printf("%s\n", ft_split("     qwe rfty uif    op", ' ')[i]);
+}
+
+void check_itoa()
+{
+	printf("-----Test for itoa-----\n***Result1 for 2147483647:\n%s\n***Result2 for -2147483648:\n%s\n***Result3 for -0\t:\n%s\n", ft_itoa(2147483647), ft_itoa(-2147483648), ft_itoa(-0));
+}
+
+char mapi(unsigned int i, char c)
+{
+	static	int	index[12] = {0};
+
+	if (i > 11 || index[i] == 1)
+		write(1, "wrong index\n", 12);
+	else
+		index[i] = 1;
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	else if (c > 'A' && c <= 'Z')
+		return (c + 32);
+	else
+		return (c);
+}
+
+void check_strmapi()
+{
+	printf("-----Test for strmapi-----\n***Result for \'qWeRtYu IoP \', every char will change states of min/maj:\n%s\n", ft_strmapi("qWeRtYu IoP ", &mapi));
+}
+
 int	main()
 {
 /*	check_memset();
@@ -274,7 +318,15 @@ int	main()
 	check_strnstr();
 	check_atoi();
 	check_calloc();
-	check_strdup();*/
+	check_strdup();
 	check_substr();
+	check_strjoin();
+	check_strtrim();
+	check_strsplit();
+	check_itoa();
+	check_strmapi();*/
+	int fd;
+	fd = open("test", O_WRONLY);
+	ft_putchar_fd('w', fd);
 	return (0);
 }

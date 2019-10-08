@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 09:57:42 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/07 17:12:49 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/08 17:19:43 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void			ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
 }

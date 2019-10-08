@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 21:50:22 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/07 17:22:49 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/08 17:51:39 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	while (dest[i] && i < size)
 		i++;
 	s1_end = i;
+	if (size == 0)
+		return (s1_end + ft_strlen(src));
 	while (src[i - s1_end] && i < size - 1)
 	{
 		dest[i] = src[i - s1_end];

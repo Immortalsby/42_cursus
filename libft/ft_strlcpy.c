@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:26:32 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/07 17:24:01 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/08 18:13:18 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	size_t i;
 
 	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
 	while (--size && src[i])
 	{
 		dest[i] = src[i];

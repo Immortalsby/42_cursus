@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 11:53:20 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/07 19:13:28 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/08 19:44:14 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
 
 void		*ft_memset(void *str, int c, size_t n);
 void		ft_bzero(void *s, size_t n);
@@ -41,5 +42,11 @@ int			ft_atoi(const char *str);
 void		*ft_calloc(size_t count, size_t eltsize);
 char		*ft_strdup(const char *s);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strtrim(char const *s1, char const *set);
+char		**ft_split(char const *s, char c);
+char		*ft_itoa(int n);
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void		ft_putchar_fd(char c, int fd);
 
 #endif

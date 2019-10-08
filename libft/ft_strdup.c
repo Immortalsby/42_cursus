@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 18:54:55 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/07 17:19:11 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/08 15:50:17 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strdup(const char *s)
 	size = 0;
 	while (s[size])
 		size++;
-	if (!(n = malloc(sizeof(char) * size)))
+	if (!(n = (char *)malloc(sizeof(char) * size)))
 		return (NULL);
 	i = 0;
 	while (s[i])
