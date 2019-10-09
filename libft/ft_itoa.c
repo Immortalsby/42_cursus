@@ -6,13 +6,13 @@
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:29:09 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/08 19:18:46 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/09 10:25:41 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	size_t	cal_size(int n)
+static	size_t	cal_size(long n)
 {
 	size_t	len;
 
@@ -29,7 +29,7 @@ static	size_t	cal_size(int n)
 	return (len);
 }
 
-static	void	trans(char *res, int n, int len)
+static	void	trans(char *res, long n, int len)
 {
 	int i;
 
@@ -47,19 +47,19 @@ char			*ft_itoa(int n)
 	char	*res;
 	size_t	len;
 	int		f;
+	long	ln;
 
+	ln = n;
 	f = 1;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	len = cal_size(n);
+	len = cal_size(ln);
 	if (!(res = (char *)malloc(sizeof(char *) * (len + 1))))
 		return (NULL);
-	if (n < 0)
+	if (ln < 0)
 	{
 		f = -1;
-		n *= -1;
+		ln *= -1;
 	}
-	trans(res, n, len);
+	trans(res, ln, len);
 	if (f == -1)
 		res[0] = '-';
 	res[len] = '\0';

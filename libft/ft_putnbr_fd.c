@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 19:51:25 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/09 11:52:09 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/09 11:26:42 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/09 15:10:41 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*d;
-	size_t	i;
-	size_t	len;
+	long i;
 
-	len = ft_strlen(s1) + ft_strlen(s2);
-	d = (char *)malloc(sizeof(char) * (len + 1));
-	if (!d)
-		return (NULL);
-	i = 0;
-	d = (char *)ft_memcpy(d, s1, ft_strlen(s1));
-	while (i < ft_strlen(s2))
+	i = n;
+	if (i < 0)
 	{
-		d[ft_strlen(s1) + i] = s2[i];
-		i++;
+		ft_putchar_fd('-', fd);
+		i *= -1;
 	}
-	d[len] = '\0';
-	return (d);
+	if (i > 9)
+		ft_putnbr_fd(i / 10, fd);
+	ft_putchar_fd(i % 10 + '0', fd);
 }

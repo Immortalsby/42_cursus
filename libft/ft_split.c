@@ -6,7 +6,7 @@
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 14:50:36 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/08 15:24:42 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/09 14:44:59 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static	char	*ft_malloc(char const *str, char c)
 	return (s);
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	char	**res;
 	int		i;

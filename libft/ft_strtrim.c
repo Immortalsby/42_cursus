@@ -6,7 +6,7 @@
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:20:14 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/08 18:36:53 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/09 11:58:23 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char			*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	k = 0;
 	len = cal_size(s1, set);
-	if (!(str = (char *)malloc(sizeof(char *) * (len + 1))))
+	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	while (i < ft_strlen(s1))
 	{

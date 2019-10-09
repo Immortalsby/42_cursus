@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 19:51:25 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/09 11:52:09 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/09 13:06:59 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/09 16:12:23 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstlast(t_list *lst)
 {
-	char	*d;
-	size_t	i;
-	size_t	len;
+	t_list *last;
+	t_list *list;
 
-	len = ft_strlen(s1) + ft_strlen(s2);
-	d = (char *)malloc(sizeof(char) * (len + 1));
-	if (!d)
-		return (NULL);
-	i = 0;
-	d = (char *)ft_memcpy(d, s1, ft_strlen(s1));
-	while (i < ft_strlen(s2))
+	list = lst;
+	while (list)
 	{
-		d[ft_strlen(s1) + i] = s2[i];
-		i++;
+		if (!(list->next))
+			last = list;
+		list = list->next;
 	}
-	d[len] = '\0';
-	return (d);
+	return (last);
 }

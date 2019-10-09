@@ -293,6 +293,169 @@ void check_strmapi()
 	printf("-----Test for strmapi-----\n***Result for \'qWeRtYu IoP \', every char will change states of min/maj:\n%s\n", ft_strmapi("qWeRtYu IoP ", &mapi));
 }
 
+void check_putcharfd()
+{
+	int fd;
+	char d[128] = {0};
+	fd = open("test_putstr", O_RDWR|O_CREAT|O_TRUNC, S_IRUSR | S_IWUSR);
+	ft_putchar_fd('w', fd);
+	close(fd);
+	fd = open("test_putstr", O_RDONLY);
+	read(fd, d, 128);
+	printf("-----Test for putcharfd-----\n***Wrote \'w\' to file test, read file test:\n%s\n", d);
+	close(fd);
+	unlink("test_putstr");
+}
+
+void check_putstrfd()
+{
+	int fd;
+	char d[100] = {0};
+	fd = open("test_putstr", O_RDWR|O_CREAT|O_TRUNC, S_IRUSR | S_IWUSR);
+	ft_putstr_fd("abcde", fd);
+	close(fd);
+	fd = open("test_putstr", O_RDONLY);
+	read(fd, d, 100);
+	printf("-----Test for putstrfd-----\n***Wrote \'w\' to file test, read file test:\n%s\n", d);
+	close(fd);
+	unlink("test_putstr");
+}
+
+void check_putendlfd()
+{
+	int fd;
+	char d[100] = {0};
+	fd = open("test_putstr", O_RDWR|O_CREAT|O_TRUNC, S_IRUSR | S_IWUSR);
+	ft_putendl_fd("abcde", fd);
+	close(fd);
+	fd = open("test_putstr", O_RDONLY);
+	read(fd, d, 100);
+	printf("-----Test for putendlfd-----\n***Wrote \'w\' to file test, read file test:\n%s\n", d);
+	close(fd);
+	unlink("test_putstr");
+}
+
+void check_putnbrfd()
+{
+	int fd;
+	char d[100] = {0};
+	fd = open("test_putstr", O_RDWR|O_CREAT|O_TRUNC, S_IRUSR | S_IWUSR);
+	ft_putnbr_fd(-2147483648, fd);
+	close(fd);
+	fd = open("test_putstr", O_RDONLY);
+	read(fd, d, 100);
+	printf("-----Test for putnbrfd-----\n***Wrote \'w\' to file test, read file test:\n%s\n", d);
+	close(fd);
+	unlink("test_putstr");
+}
+
+void check_lstnew()
+{
+	t_list *new;
+	void	*d;
+
+	d = (void *)"hello";
+	new = ft_lstnew(d);
+	printf("-----Test for lstnew-----\n***Create a new list with content \'hello\', and next NULL:\nContent:\n%s\n", new->content);
+}
+
+void check_lstaddfront()
+{
+	t_list *new;
+	t_list *new2;
+	void	*d;
+	void	*d2;
+
+	d = (void *)"hello";
+	d2 = (void *)"world";
+	new = ft_lstnew(d2);
+	printf("-----Test for lstAddFront-----\n***Create a new list with content \'world\', and next NULL:\nContent of first ele:\n%s\n", new->content);
+	new2 = ft_lstnew(d);
+	ft_lstadd_front(&new, new2);
+	printf("***Add a new list with content \'hello\' in front\nContent of first ele:\n%s\n", new2->content);
+}
+
+void check_lstsize()
+{
+	t_list *new;
+	t_list *new2;
+	void	*d;
+	void	*d2;
+
+	d = (void *)"hello";
+	d2 = (void *)"world";
+	new = ft_lstnew(d2);
+	printf("-----Test for lstsize-----\n***Create a new list with content \'world\', and next NULL:\nSize of list:\n%d\n", ft_lstsize(new));
+	new2 = ft_lstnew(d);
+	ft_lstadd_front(&new, new2);
+	printf("***Add a new list with content \'hello\' in front\nSize of list:\n%d\n", ft_lstsize(new2));
+}
+
+void check_lstlast()
+{
+	t_list *new;
+	t_list *new2;
+	void	*d;
+	void	*d2;
+
+	d = (void *)"hello";
+	d2 = (void *)"world";
+	new = ft_lstnew(d2);
+	printf("-----Test for lstlast-----\n***Create a new list with content \'world\', and next NULL:\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new2 = ft_lstnew(d);
+	ft_lstadd_front(&new, new2);
+	printf("***Add a new list with content \'hello\' in front\nLast ele of list:\n%s\n", ft_lstlast(new2)->content);
+}
+
+void check_lstaddback()
+{
+	t_list *new;
+	t_list *new2;
+	void	*d;
+	void	*d2;
+
+	d = (void *)"hello";
+	d2 = (void *)"world";
+	new = ft_lstnew(d2);
+	printf("-----Test for lstAddBack-----\n***Create a new list with content \'world\', and next NULL:\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new2 = ft_lstnew(d);
+	ft_lstadd_back(&new, new2);
+	printf("***Add a new list with content \'hello\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+}
+
+void del_delone(void *content)
+{
+	content=NULL;
+}
+
+void check_lstdelone()
+{
+	t_list *new;
+	t_list *new2;
+	t_list *new3;
+	void	*d;
+	void	*d2;
+	void	*d3;
+
+	d = (void *)malloc(6);
+	d2 = (void *)malloc(6);
+	d3 = (void *)malloc(6);
+	memcpy(d,"hello",5);
+	memcpy(d2,"world",5);
+	memcpy(d3,"my",2);
+	new = ft_lstnew(d2);
+	printf("-----Test for lstdelone-----\n***Create a new list with content \'world\', and next NULL:\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new2 = ft_lstnew(d);
+	ft_lstadd_back(&new, new2);
+	printf("***Add a new list with content \'hello\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new3 = ft_lstnew(d3);
+	ft_lstadd_back(&new, new3);
+	printf("***Add a new list with content \'my\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	ft_lstdelone(new2, &del_delone);
+	printf("***Del the last one:\n%s\n", ft_lstlast(new)->content);
+	printf("***Whole list:\n%s--%s--%s\n", new->content, new2->content, new3->content);
+}
+
 int	main()
 {
 /*	check_memset();
@@ -324,9 +487,16 @@ int	main()
 	check_strtrim();
 	check_strsplit();
 	check_itoa();
-	check_strmapi();*/
-	int fd;
-	fd = open("test", O_WRONLY);
-	ft_putchar_fd('w', fd);
+	check_strmapi();
+	check_putcharfd();
+	check_putstrfd();
+	check_putendlfd();
+	check_putnbrfd();
+	check_lstnew();
+	check_lstaddfront();*/
+	check_lstsize();
+	check_lstlast();
+	check_lstaddback();
+	check_lstdelone();
 	return (0);
 }
