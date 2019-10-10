@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 01:41:58 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/10 01:52:07 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/10 13:40:31 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list d;
+	t_list *d;
 
-	d = *lst;
-	if(d)
+	d = lst;
+	if (d)
 	{
 		while (d)
 		{
-			f(d->content);
+			f(d);
 			d = d->next;
 		}
 	}

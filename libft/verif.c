@@ -316,7 +316,7 @@ void check_putstrfd()
 	close(fd);
 	fd = open("test_putstr", O_RDONLY);
 	read(fd, d, 100);
-	printf("-----Test for putstrfd-----\n***Wrote \'w\' to file test, read file test:\n%s\n", d);
+	printf("-----Test for putstrfd-----\n***Wrote \'abcde\' to file test, read file test:\n%s\n", d);
 	close(fd);
 	unlink("test_putstr");
 }
@@ -330,7 +330,7 @@ void check_putendlfd()
 	close(fd);
 	fd = open("test_putstr", O_RDONLY);
 	read(fd, d, 100);
-	printf("-----Test for putendlfd-----\n***Wrote \'w\' to file test, read file test:\n%s\n", d);
+	printf("-----Test for putendlfd-----\n***Wrote \'abced\' to file test, read file test:\n%s\n", d);
 	close(fd);
 	unlink("test_putstr");
 }
@@ -440,9 +440,9 @@ void check_lstdelone()
 	d = (void *)malloc(6);
 	d2 = (void *)malloc(6);
 	d3 = (void *)malloc(6);
-	memcpy(d,"hello",5);
-	memcpy(d2,"world",5);
-	memcpy(d3,"my",2);
+	strcpy(d,"hello");
+	strcpy(d2,"world");
+	strcpy(d3,"my");
 	new = ft_lstnew(d2);
 	printf("-----Test for lstdelone-----\n***Create a new list with content \'world\', and next NULL:\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
 	new2 = ft_lstnew(d);
@@ -455,11 +455,142 @@ void check_lstdelone()
 	ft_lstdelone(new2, &del_delone);
 	printf("***Del the middle one:\n");
 	printf("***Whole list after del:\n%s--%s--%s\n", new->content, new->next->content, new->next->next->content);
+	free(new);
+}
+
+static int counttt = 0;
+
+void f_clear(void *c)
+{
+	free(c);
+	counttt++;
+}
+
+void check_lstclear()
+{
+	t_list *new=NULL;
+	t_list *new2=NULL;
+	t_list *new3=NULL;
+	void	*d;
+	void	*d2;
+	void	*d3;
+
+	d = malloc(5);
+	d2 = (void *)malloc(10);
+	d3 = (void *)malloc(10);
+	strcpy(d,"hello");
+	strcpy(d2,"world");
+	strcpy(d3,"my");
+	new = ft_lstnew(d2);
+	printf("-----Test for lstclear-----\n***Create a new list with content \'world\', and next NULL:\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new2 = ft_lstnew(d);
+	ft_lstadd_back(&new, new2);
+	printf("***Add a new list with content \'hello\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new3 = ft_lstnew(d3);
+	ft_lstadd_back(&new, new3);
+	printf("***Add a new list with content \'my\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	printf("***Whole list before del:\n%s--%s--%s\n", new->content, new->next->content, new->next->next->content);
+	ft_lstclear(&new2, &f_clear);
+	printf("***Del the middle one and last one:\n");
+	if (new->next != new2)
+		printf("***Whole list after del:\n%s----\nnb of del:%d\n", new->content, counttt);
+}
+
+void f_iter(void *elem)
+{
+	int		len;
+	char		*content;
+	t_list		*el;
+
+	len = 0;
+	el = (t_list *)elem;
+	content = (char *)el->content;
+	while (content[len])
+	{
+		content[len++] = 'd';
+	}
+}
+
+void check_lstiter()
+{
+	t_list *new;
+	t_list *new2;
+	t_list *new3;
+	void	*d;
+	void	*d2;
+	void	*d3;
+
+	d = (void *)malloc(6);
+	d2 = (void *)malloc(6);
+	d3 = (void *)malloc(6);
+	strcpy(d,"hello");
+	strcpy(d2,"world");
+	strcpy(d3,"my");
+	new = ft_lstnew(d2);
+	printf("-----Test for lstiter-----\n***Create a new list with content \'world\', and next NULL:\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new2 = ft_lstnew(d);
+	ft_lstadd_back(&new, new2);
+	printf("***Add a new list with content \'hello\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new3 = ft_lstnew(d3);
+	ft_lstadd_back(&new, new3);
+	printf("***Add a new list with content \'my\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	printf("***Whole list before iter:\n%s--%s--%s\n", new->content, new->next->content, new->next->next->content);
+	ft_lstiter(new, &f_iter);
+	printf("***Iter the list:\n");
+	printf("***Whole list after iter:\n%s--%s--%s\n", new->content, new->next->content, new->next->next->content);
+}
+
+t_list	*f_map(void *elem)
+{
+	int		i;
+	t_list	*new_elem;
+	t_list	*el;
+
+	el = (t_list *)elem;
+	new_elem = ft_lstnew(el->content);
+	if (!new_elem)
+		return (0);
+	i = 0;
+	while (((char *)new_elem->content)[i])
+	{
+		((char *)new_elem->content)[i] = 'y';
+		i++;
+	}
+	return (new_elem);
+}
+
+void check_lstmap()
+{
+	t_list *new;
+	t_list *new2;
+	t_list *new3;
+	void	*d;
+	void	*d2;
+	void	*d3;
+
+	d = (void *)malloc(5);
+	d2 = (void *)malloc(5);
+	d3 = (void *)malloc(5);
+	strcpy(d,"hello");
+	strcpy(d2,"world");
+	strcpy(d3,"my");
+	new = ft_lstnew(d2);
+	printf("-----Test for lstmap-----\n***Create a new list with content \'world\', and next NULL:\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new2 = ft_lstnew(d);
+	ft_lstadd_back(&new, new2);
+	printf("***Add a new list with content \'hello\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	new3 = ft_lstnew(d3);
+	ft_lstadd_back(&new, new3);
+	printf("***Add a new list with content \'my\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	printf("***Whole list before map:\n%s--%s--%s\n", new->content, new->next->content, new->next->next->content);
+	ft_lstmap(new, &f_map);
+	printf("***Start mapping:\n");
+	printf("***Whole list after map:\n%s--%s--%s\n", new->content, new->next->content, new->next->next->content);
 }
 
 int	main()
 {
-/*	check_memset();
+	check_memset();
 	check_bzero();
 	check_memcpy();
 	check_memccpy();
@@ -494,10 +625,13 @@ int	main()
 	check_putendlfd();
 	check_putnbrfd();
 	check_lstnew();
-	check_lstaddfront();*/
+	check_lstaddfront();
 	check_lstsize();
 	check_lstlast();
 	check_lstaddback();
 	check_lstdelone();
+	check_lstclear();
+	check_lstiter();
+	check_lstmap();
 	return (0);
 }
