@@ -1,6 +1,6 @@
 // This is a verification file;
 
-#include "libft.h"
+#include "libft_bonus.h"
 #include <stdio.h>
 #include <ctype.h>
 
@@ -425,7 +425,7 @@ void check_lstaddback()
 
 void del_delone(void *content)
 {
-	content=NULL;
+	free(content);
 }
 
 void check_lstdelone()
@@ -451,9 +451,10 @@ void check_lstdelone()
 	new3 = ft_lstnew(d3);
 	ft_lstadd_back(&new, new3);
 	printf("***Add a new list with content \'my\' in back\nLast ele of list:\n%s\n", ft_lstlast(new)->content);
+	printf("***Whole list before del:\n%s--%s--%s\n", new->content, new->next->content, new->next->next->content);
 	ft_lstdelone(new2, &del_delone);
-	printf("***Del the last one:\n%s\n", ft_lstlast(new)->content);
-	printf("***Whole list:\n%s--%s--%s\n", new->content, new2->content, new3->content);
+	printf("***Del the middle one:\n");
+	printf("***Whole list after del:\n%s--%s--%s\n", new->content, new->next->content, new->next->next->content);
 }
 
 int	main()
