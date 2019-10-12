@@ -2,7 +2,8 @@
 
 int main(){
 
-	char str[]="this is a test";
-	printf("%s", str);
+	int str=+132.123;
+	printf("%i", str);
+	printf("%d", str);
 	return (0);
 }

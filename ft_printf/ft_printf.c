@@ -6,7 +6,7 @@
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:20:41 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/11 20:24:43 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/12 21:02:52 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,44 +22,47 @@
 #include <stdio.h>
 
 void	ft_putchar(char c);
-void	ft_putstr(char *str);
+int		ft_putstrlen(char *str);
+int		ft_puthex(long unsigned int n, char *hex, int i);
 char	*ft_itoa(int i);
 
-int		ft_printf(const char *fmt, ...)
+int		ft_printf(const char *format, ...)
 {
 	int		count;
-	char	format;
 	char	next;
 	va_list	ap;
 
 	count = 0;
-	format = *fmt;
-	va_start(ap, fmt);
-	while (format)
+	va_start(ap, format);
+	while (*format)
 	{
-		if (format == '%')
+		next = *format;
+		if (next == '%')
 		{
-			next = *++fmt;
-			if (next == 'd' && ++count)
+			if (*++format == 'c')
 			{
-				ft_putstr(ft_itoa(va_arg(ap, int)));
-				break ;
+				ft_putchar((char)va_arg(ap, int));
+				count++;
 			}
-			if (format == 's')
+			else if (*format == 's')
 			{
-				ft_putstr(ft_itoa(va_arg(ap, int)));
-				break ;
+				count += ft_putstrlen(va_arg(ap, char *));
 			}
-//			if (format == 'p')
-
-			if (format == 'c')
+			else if (*format == 'p')
 			{
-				ft_putchar(*ft_itoa(va_arg(ap, int)));
-				break ;
+				ft_putstrlen("0x");
+				count += 2;
+				count += ft_puthex(va_arg(ap, long unsigned int),
+						"0123456789abcdef", 0);
 			}
-//			if (format == 'i')
-
-//			if (format == 'u')
+			else if (*format == 'd' || *format == 'i')
+			{
+				count += ft_putstrlen(ft_itoa(va_arg(ap, int)));
+			}
+			else if (*format == 'u')
+			{
+				count += 1;
+			}
 
 //			if (format == 'x')
 
@@ -67,23 +70,58 @@ int		ft_printf(const char *fmt, ...)
 		}
 		else
 		{
-			ft_putchar(format);
-			break ;
+			ft_putchar(*format);
+			count++;
 		}
+		format++;
 	}
+	va_end(ap);
 	return (count);
 }
 
 int main()
 {
+	int len;
 	int i = 132;
+	int j = -2147483648;
 	char str[]="test";
 	char c = 't';
-	ft_printf("%d\n", i);
-	printf("%d\n", i);
-	ft_printf("%s\n", str);
-	printf("%s\n", str);
-	ft_printf("%c\n", c);
-	printf("%c\n", c);
+
+	/* type s */
+	printf("----------My printf: \n");
+	len = ft_printf("The test is for format \'s\', result:\n%s\n", str);
+	printf("Output de retour:\n%d\n", len);
+	printf("----------Original printf: \n");
+	len = printf("The test is for format \'s\', result:\n%s\n", str);
+	printf("Output de retour:\n%d\n", len);	
+	/* type c */
+	printf("----------My printf: \n");
+	len = ft_printf("The test is for format \'c\', result:\n%c\n", c);
+	printf("Output de retour:\n%d\n", len);
+	printf("----------Original printf: \n");
+	len = printf("The test is for format \'c\', result:\n%c\n", c);
+	printf("Output de retour:\n%d\n", len);
+	/* type p */
+	printf("----------My printf: \n");
+	len = ft_printf("The test is for format \'p\', result:\n%p\n", str);
+	printf("Output de retour:\n%d\n", len);
+	printf("----------Original printf: \n");
+	len = printf("The test is for format \'p\', result:\n%p\n", str);
+	printf("Output de retour:\n%d\n", len);
+	/* type d */
+	printf("----------My printf: \n");
+	len = ft_printf("The test is for format \'i\', result:\n1.%d\n2.%d\n3.%d\n", i, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+	printf("----------Original printf: \n");
+	len = printf("The test is for format \'i\', result:\n1.%d\n2.%d\n3.%d\n", i, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+	/* type i */
+	printf("----------My printf: \n");
+	len = ft_printf("The test is for format \'i\', result:\n1.%d\n2.%d\n3.%d\n", 13, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+	printf("----------Original printf: \n");
+	len = printf("The test is for format \'i\', result:\n1.%d\n2.%d\n3.%d\n", 13, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+
 	return (0);
 }
