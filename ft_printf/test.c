@@ -2,8 +2,8 @@
 
 int main(){
 
-	int str=+132.123;
-	printf("%i", str);
-	printf("%d", str);
+	int str=-123;
+	printf("%u\n", str);
+	printf("%d", (unsigned int)str);
 	return (0);
 }

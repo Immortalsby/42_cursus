@@ -6,7 +6,7 @@
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:20:41 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/12 21:02:52 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/13 22:54:36 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 void	ft_putchar(char c);
 int		ft_putstrlen(char *str);
 int		ft_puthex(long unsigned int n, char *hex, int i);
-char	*ft_itoa(int i);
+char	*ft_itoa(long i);
 
 int		ft_printf(const char *format, ...)
 {
@@ -61,12 +61,18 @@ int		ft_printf(const char *format, ...)
 			}
 			else if (*format == 'u')
 			{
-				count += 1;
+					count += ft_putstrlen(ft_itoa((unsigned int )(va_arg(ap, unsigned int))));
 			}
-
-//			if (format == 'x')
-
-//			if (format == 'X')
+			else if (*format == 'x')
+			{
+				count += ft_puthex(va_arg(ap, long unsigned int),
+						"0123456789abcdef", 0);
+			}
+			else if (*format == 'X')
+			{
+				count += ft_puthex(va_arg(ap, long unsigned int),
+						"0123456789ABCDEF", 0);	
+			}
 		}
 		else
 		{
@@ -81,11 +87,12 @@ int		ft_printf(const char *format, ...)
 
 int main()
 {
-	int len;
-	int i = 132;
-	int j = -2147483648;
-	char str[]="test";
-	char c = 't';
+	int	len;
+	int	i = 132;
+	int	n = -12;
+	int	j = -2147483648;
+	char	str[]="test";
+	char	c = 't';
 
 	/* type s */
 	printf("----------My printf: \n");
@@ -117,10 +124,31 @@ int main()
 	printf("Output de retour:\n%d\n", len);
 	/* type i */
 	printf("----------My printf: \n");
-	len = ft_printf("The test is for format \'i\', result:\n1.%d\n2.%d\n3.%d\n", 13, 2147483647, j);
+	len = ft_printf("The test is for format \'i\', result:\n1.%i\n2.%i\n3.%i\n", 13, 2147483647, j);
 	printf("Output de retour:\n%d\n", len);
 	printf("----------Original printf: \n");
-	len = printf("The test is for format \'i\', result:\n1.%d\n2.%d\n3.%d\n", 13, 2147483647, j);
+	len = printf("The test is for format \'i\', result:\n1.%i\n2.%i\n3.%i\n", 13, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+	/* type u */
+	printf("----------My printf: \n");
+	len = ft_printf("The test is for format \'u\', result:\n1.%u\n2.%u\n3.%u\n", n, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+	printf("----------Original printf: \n");
+	len = printf("The test is for format \'u\', result:\n1.%u\n2.%u\n3.%u\n", n, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+	/* type x */
+	printf("----------My printf: \n");
+	len = ft_printf("The test is for format \'x\', result:\n1.%x\n2.%x\n3.%x\n", n, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+	printf("----------Original printf: \n");
+	len = printf("The test is for format \'x\', result:\n1.%x\n2.%x\n3.%x\n", n, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+	/* type X */
+	printf("----------My printf: \n");
+	len = ft_printf("The test is for format \'X\', result:\n1.%X\n2.%X\n3.%X\n", n, 2147483647, j);
+	printf("Output de retour:\n%d\n", len);
+	printf("----------Original printf: \n");
+	len = printf("The test is for format \'X\', result:\n1.%X\n2.%X\n3.%X\n", n, 2147483647, j);
 	printf("Output de retour:\n%d\n", len);
 
 	return (0);

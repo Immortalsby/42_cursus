@@ -6,7 +6,7 @@
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:29:09 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/11 15:51:13 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/13 22:46:58 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static	void	trans(char *res, long n, int len)
 	}
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(long n)
 {
 	char	*res;
 	size_t	len;
