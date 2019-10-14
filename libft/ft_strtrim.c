@@ -6,56 +6,64 @@
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:20:14 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/09 11:58:23 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/14 16:11:49 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	size_t	cal_size(char const *s1, char const *set)
+static int			ft_belongs_to(char c, char const *set)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
+	int i;
 
 	i = 0;
-	k = 0;
-	while (i < ft_strlen(s1))
+	while (set[i])
 	{
-		j = 0;
-		while (s1[i] != set[j] && j < ft_strlen(set))
-			j++;
-		if (j == ft_strlen(set))
-			k++;
+		if (c == set[i])
+			return (1);
 		i++;
 	}
-	return (k);
+	return (0);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+static unsigned int	ft_find_start(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	size_t	len;
-	char	*str;
+	unsigned int i;
 
 	i = 0;
-	k = 0;
-	len = cal_size(s1, set);
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	while (i < ft_strlen(s1))
-	{
-		j = 0;
-		while (s1[i] != set[j] && j < ft_strlen(set))
-			j++;
-		if (j == ft_strlen(set))
-		{
-			str[k] = s1[i];
-			k++;
-		}
+	while (s1[i] && ft_belongs_to(s1[i], set) == 1)
 		i++;
+	return (i);
+}
+
+static size_t		ft_find_end(char const *s1, char const *set, size_t index)
+{
+	size_t res;
+
+	res = index;
+	while (res != 0 && ft_belongs_to(s1[res], set) == 1)
+		res--;
+	return (res);
+}
+
+char				*ft_strtrim(char const *s1, char const *set)
+{
+	unsigned int	start;
+	size_t			end;
+	char			*res;
+
+	if (ft_strlen(s1) != 0)
+	{
+		start = ft_find_start(s1, set);
+		end = ft_find_end(s1, set, ft_strlen(s1) - 1);
 	}
-	return (str);
+	if (ft_strlen(s1) == 0 || end < start)
+	{
+		res = (char *)malloc(sizeof(char));
+		res[0] = '\0';
+		return (res);
+	}
+	if (!(res = ft_substr(s1, start, end - start + 1)))
+		return (NULL);
+	return (res);
 }
