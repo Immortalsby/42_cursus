@@ -1,1 +1,3 @@
-## Libft success with 103/125，do not take substr and strtrim which are not properly correct
+## Libft success with 103/125
+***
+### substr and strtrim were not properly correct, but now they work
