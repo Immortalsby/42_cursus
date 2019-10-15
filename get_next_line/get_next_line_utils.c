@@ -6,13 +6,13 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 16:42:50 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/14 21:44:19 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/15 13:33:28 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_memcpy(void *desc, const void *src, size_t size)
+void		*ft_memcpy(void *desc, const void *src, size_t size)
 {
 	unsigned char *d;
 	unsigned char *s;
@@ -30,7 +30,6 @@ void	*ft_memcpy(void *desc, const void *src, size_t size)
 	return (desc);
 }
 
-/* 计算str长度 */
 size_t		ft_strlen(const char *s)
 {
 	size_t i;
@@ -41,8 +40,7 @@ size_t		ft_strlen(const char *s)
 	return (i);
 }
 
-/* 新建立一个str将s给他 */
-char	*ft_strdup(const char *s)
+char		*ft_strdup(const char *s)
 {
 	char	*n;
 	int		i;
@@ -63,8 +61,7 @@ char	*ft_strdup(const char *s)
 	return (n);
 }
 
-/* 把s2放到s1后面 */
-char	*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*d;
 	size_t	i;

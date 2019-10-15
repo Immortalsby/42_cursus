@@ -8,7 +8,8 @@ int		main(int ac, char **argv)
 
 	ac++;
 	fd = open(argv[1], O_RDONLY);
-	while (get_next_line(fd, &line) > 0)
+	printf("%d", BUFFER_SIZE);
+	while (get_next_line(0, &line) > 0)
 		printf("l : %s\n", line);
 	return (0);
 }

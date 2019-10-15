@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 23:38:57 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/15 11:23:33 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/15 13:31:29 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ static	void	*ft_memset(void *str, int c, size_t n)
 }
 
 /*
-** ||检查readed有无\n||
+** -----检查readed有无\n-----
 ** 如果没有就说明不合格
 ** 如果有的话就把它copy到**line
 ** 再把tmp里面的下一个copy回readed
 ** 还会再用到
 */
-static	int	check_if_line(char **readed, char **line)
+
+static	int		check_if_line(char **readed, char **line)
 {
 	char			*tmp;
 	char			*chr;
@@ -53,14 +54,15 @@ static	int	check_if_line(char **readed, char **line)
 }
 
 /*
-** ||持续读fd，当read>0时||
+** -----持续读fd，当read>0时-----
 ** 如果读到内容，把内容写入tmp
 ** 如果是空的，就把hot值付给readed
 ** 如果有 \n 就break
 ** 如果没错的话，ret就等于1
 ** 有错的话返回-1
 */
-static	int	read_fd(int fd, char *hot, char **readed, char **line)
+
+static	int		read_fd(int fd, char *hot, char **readed, char **line)
 {
 	int				ret;
 	char			*tmp;
@@ -93,7 +95,8 @@ static	int	read_fd(int fd, char *hot, char **readed, char **line)
 ** 如果遇到EOF, 就free掉tmp里的值，然后如果read之后为空了，就返回readed（0）
 ** 如果一切顺利，将读到的值保存到line，然后清空readed，返回1
 */
-int			get_next_line(int fd, char **line)
+
+int				get_next_line(int fd, char **line)
 {
 	static char		*readed[FD];
 	char			*tmp;
