@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 23:38:57 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/14 22:06:03 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/15 11:23:33 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static	void	*ft_memset(void *str, int c, size_t n)
 ** 再把tmp里面的下一个copy回readed
 ** 还会再用到
 */
-static	int	checker(char **readed, char **line)
+static	int	check_if_line(char **readed, char **line)
 {
 	char			*tmp;
 	char			*chr;
@@ -60,7 +60,7 @@ static	int	checker(char **readed, char **line)
 ** 如果没错的话，ret就等于1
 ** 有错的话返回-1
 */
-static	int	read_file(int fd, char *hot, char **readed, char **line)
+static	int	read_fd(int fd, char *hot, char **readed, char **line)
 {
 	int				ret;
 	char			*tmp;
@@ -77,13 +77,13 @@ static	int	read_file(int fd, char *hot, char **readed, char **line)
 		}
 		else
 			*readed = ft_strdup(hot);
-		if (checker(readed, line))
+		if (check_if_line(readed, line))
 			break ;
 	}
 	if (ret > 0)
 		return (1);
 	else
-		return (ret);
+		return (-1);
 }
 
 /*
@@ -103,12 +103,10 @@ int			get_next_line(int fd, char **line)
 		|| (fd < 0 || fd >= FD) || (read(fd, readed[fd], 0) < 0))
 		return (-1);
 	if (readed[fd])
-	{
-		if (checker(&readed[fd], line))
+		if (check_if_line(&readed[fd], line))
 			return (1);
-	}
 	ft_memset(tmp, 0, BUFFER_SIZE);
-	ret = read_file(fd, tmp, &readed[fd], line);
+	ret = read_fd(fd, tmp, &readed[fd], line);
 	free(tmp);
 	if (ret != 0 || readed[fd] == NULL || readed[fd][0] == '\0')
 	{
