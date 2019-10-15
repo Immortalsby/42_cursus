@@ -6,7 +6,7 @@
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:17:32 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/14 16:08:46 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/15 16:38:36 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	{
 		if (!(d = (char *)malloc(sizeof(char) * 1)))
 			return (NULL);
-		res[0] = '\0';
-		return (res);
+		d[0] = '\0';
+		return (d);
 	}
 	tmp = start;
 	i = -1;
