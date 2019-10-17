@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 23:37:42 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/17 18:34:32 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/10 01:41:58 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/10 13:40:31 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft_bonus.h"
 
-# include <unistd.h>
-# include <stdlib.h>
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	t_list *d;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
-# endif
-
-# define FD 51200
-
-int		get_next_line(int fd, char **line);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
-size_t	ft_strlen_sc(const char *str, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-
-#endif
+	d = lst;
+	if (d)
+	{
+		while (d)
+		{
+			f(d);
+			d = d->next;
+		}
+	}
+}

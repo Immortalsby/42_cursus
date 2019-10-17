@@ -2,8 +2,9 @@
 
 int main(){
 
-	int str=-123;
-	printf("%u\n", str);
-	printf("%d", (unsigned int)str);
+	int str=+42;
+	printf("%+04d", str);
+	printf("\n");
+	printf("%-+04d", str);
 	return (0);
 }

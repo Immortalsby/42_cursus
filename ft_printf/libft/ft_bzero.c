@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 23:37:42 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/17 18:34:32 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/01 09:57:42 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/08 17:19:43 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+/*
+** This is a partially obsolete alternative for memset
+** Note that it is not as general as memset, because the only value it can
+** store is zero.
+*/
 
-# include <unistd.h>
-# include <stdlib.h>
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
-# endif
-
-# define FD 51200
-
-int		get_next_line(int fd, char **line);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
-size_t	ft_strlen_sc(const char *str, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-
-#endif
+void			ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
+}

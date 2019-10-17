@@ -1,6 +1,6 @@
 // This is a verification file;
 
-#include "libft.h"
+// #include "libft_bonus.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <unistd.h>
@@ -8,7 +8,7 @@
 #include <string.h>
 #include <fcntl.h>
 
-/* typedef	struct	s_list
+typedef	struct	s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -47,7 +47,6 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
-*/
 
 void	check_memset()
 {
@@ -301,7 +300,7 @@ void check_strjoin()
 
 void check_strtrim()
 {
-	printf("-----Test for strtrim-----\n***Result1 for 1234***1234 and 1234:\n%s\n***Result2 for qwerty and y6:\n%s\n***Result3 for ppstartppp and start:\n%s\n", ft_strtrim("ppppp6ppppp", "6p"), ft_strtrim("ppppp 6 ppppp", " "), ft_strtrim(" ppppp 6 ppppp ", "p"));
+	printf("-----Test for strtrim-----\n***Result1 for 1234***1234 and 123:\n%s\n***Result2 for pppp and 12345p:\n%s\n***Result3 for yu yu yu and 9\t:\n%s\n", ft_strtrim("1234***1234", "123"), ft_strtrim("pppp", "123456p"), ft_strtrim("yu yu yu", "9\t"));
 }
 
 void check_strsplit()
@@ -393,7 +392,7 @@ void check_putnbrfd()
 	close(fd);
 	unlink("test_putstr");
 }
-
+/*
 void check_lstnew()
 {
 	t_list *new;
@@ -632,10 +631,10 @@ void check_lstmap()
 	printf("***Start mapping:\n");
 	printf("***Whole list after map:\n%s--%s--%s\n", new->content, new->next->content, new->next->next->content);
 }
-
+*/
 int	main()
 {
-/*	check_memset();
+	check_memset();
 	check_bzero();
 	check_memcpy();
 	check_memccpy();
@@ -660,23 +659,23 @@ int	main()
 	check_calloc();
 	check_strdup();
 	check_substr();
-	check_strjoin();*/
+	check_strjoin();
 	check_strtrim();
-/*	check_strsplit();
+	check_strsplit();
 	check_itoa();
 	check_strmapi();
 	check_putcharfd();
 	check_putstrfd();
 	check_putendlfd();
 	check_putnbrfd();
-	check_lstnew();
-	check_lstaddfront();
-	check_lstsize();
-	check_lstlast();
-	check_lstaddback();
-	check_lstdelone();
-	check_lstclear();
-	check_lstiter();
-	check_lstmap();*/
+//	check_lstnew();
+//	check_lstaddfront();
+//	check_lstsize();
+//	check_lstlast();
+//	check_lstaddback();
+//	check_lstdelone();
+//	check_lstclear();
+//	check_lstiter();
+//	check_lstmap();
 	return (0);
 }

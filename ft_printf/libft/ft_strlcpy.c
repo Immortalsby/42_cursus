@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 23:37:42 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/17 18:34:32 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/02 10:26:32 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/08 18:13:18 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+/*
+** strlcpy() copies up to n - 1	characters from	the string src to dst,
+** NUL-terminating the result	if dstsize is not 0.
+*/
 
-# include <unistd.h>
-# include <stdlib.h>
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
-# endif
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t i;
 
-# define FD 51200
-
-int		get_next_line(int fd, char **line);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
-size_t	ft_strlen_sc(const char *str, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-
-#endif
+	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (--size && src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (ft_strlen(src));
+}

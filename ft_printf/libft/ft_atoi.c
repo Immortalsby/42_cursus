@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 23:37:42 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/17 18:34:32 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/02 23:16:22 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/07 17:03:07 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
+int	ft_atoi(const char *str)
+{
+	int	nb;
+	int	neg;
+	int	i;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
-# endif
-
-# define FD 51200
-
-int		get_next_line(int fd, char **line);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
-size_t	ft_strlen_sc(const char *str, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-
-#endif
+	nb = 0;
+	neg = 0;
+	i = 0;
+	while ((str[i] <= 13 && str[i] >= 9) || str[i] == 32)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			neg = 1;
+		i++;
+	}
+	while (str[i] <= '9' && str[i] >= '0')
+	{
+		nb = (nb * 10) - 48 + str[i];
+		i++;
+	}
+	if (neg == 1)
+		return (-nb);
+	else
+		return (nb);
+}

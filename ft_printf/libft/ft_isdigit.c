@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 23:37:42 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/17 18:34:32 by bshi             ###   ########.fr       */
+/*   Created: 2019/10/02 23:49:30 by bshi              #+#    #+#             */
+/*   Updated: 2019/10/07 17:09:48 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+/*
+** The ft_isdigit() function tests for a decimal digit character.  Regardless of
+** locale, this includes the following characters only: '0' - '9'
+*/
 
-# include <unistd.h>
-# include <stdlib.h>
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
-# endif
-
-# define FD 51200
-
-int		get_next_line(int fd, char **line);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
-size_t	ft_strlen_sc(const char *str, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-
-#endif
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
