@@ -6,11 +6,11 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 01:14:18 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/10 01:44:54 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/17 16:14:30 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {

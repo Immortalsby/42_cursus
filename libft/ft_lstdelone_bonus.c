@@ -6,11 +6,11 @@
 /*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 14:10:03 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/10 01:36:21 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/17 16:14:39 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {

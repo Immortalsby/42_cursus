@@ -6,7 +6,7 @@
 #    By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/02 11:21:58 by bshi              #+#    #+#              #
-#    Updated: 2019/10/10 13:50:20 by bshi             ###   ########.fr        #
+#    Updated: 2019/10/17 16:08:27 by bshi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@
 
 NAME= libft.a
 
-BONUS= bonus.a
+CFLAGS = -Wall -Wextra -Werror -I. -c
 
-SRC_FILE=	ft_atoi.c\
+SRCS=		ft_atoi.c\
 			ft_bzero.c\
 			ft_isalnum.c\
 			ft_isalpha.c\
@@ -55,7 +55,7 @@ SRC_FILE=	ft_atoi.c\
 			ft_toupper.c\
 			ft_calloc.c\
 
-SRC_BONUS=	ft_lstnew_bonus.c\
+SRCS_B=	ft_lstnew_bonus.c\
 			ft_lstadd_front_bonus.c\
 			ft_lstsize_bonus.c\
 			ft_lstlast_bonus.c\
@@ -65,25 +65,28 @@ SRC_BONUS=	ft_lstnew_bonus.c\
 			ft_lstiter_bonus.c\
 			ft_lstmap_bonus.c\
 
-OBJ=$(SRC_FILE:.c=.o)
+OBJECTS = $(SRCS:%.c=%.o)
 
-OBJ_BONUS= $(SRC_BONUS:.c=.o)
+OBJECTS_B = $(SRCS_B:%.c=%.o)
 
-all: $(NAME) 
+all : $(NAME)
 
-$(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+$(NAME) : $(OBJECTS)
+		ar rcs $(NAME) $(OBJECTS)
 
-%.o: %.c
-	@gcc -c -Wall -Werror -Wextra $< -o $@
+$(OBJECTS) : $(SRCS)
+		gcc $(CFLAGS) $(SRCS)
 
-bonus: $(OBJ_BONUS)
-	@ar rc $(BONUS) $(OBJ_BONUS)
-	@ranlib $(BONUS)
+$(OBJECTS_B) : $(SRCS_B)
+		gcc $(CFLAGS) $(SRCS_B)
 
-clean:
-	@rm -f $(OBJ) $(OBJ_BONUS)
-fclean: clean
-	@rm -f $(NAME) $(BONUS)
-re: fclean all
+bonus : fclean $(OBJECTS) $(OBJECTS_B)
+	ar rcs libft.a $(OBJECTS) $(OBJECTS_B)
+
+clean : 
+	rm -f $(OBJECTS) $(OBJECTS_B)
+
+fclean : clean
+	rm -f $(NAME)
+
+re : fclean all

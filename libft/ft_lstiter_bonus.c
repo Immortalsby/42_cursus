@@ -6,11 +6,11 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 01:41:58 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/10 13:40:31 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/17 16:14:47 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
