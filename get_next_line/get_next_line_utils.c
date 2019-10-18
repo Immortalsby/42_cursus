@@ -6,7 +6,7 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 16:42:50 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/17 18:58:12 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/18 18:13:48 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char			*ft_strjoin(char const *s1, char const *s2)
 	size_t	len;
 
 	len = ft_strlen_sc(s1, '\0') + ft_strlen_sc(s2, '\0');
-	if(!(d = (char *)malloc(sizeof(char) * (len + 1))))
+	if (!(d = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;
 	while (s1 && *s1 != '\0')
