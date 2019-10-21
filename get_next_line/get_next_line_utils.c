@@ -6,60 +6,68 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 16:42:50 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/18 18:13:48 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/21 19:40:05 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 
-size_t			ft_strlen_sc(const char *str, char c)
+int	ft_strlen(char *s)
 {
-	size_t	len;
+	int i;
 
-	len = 0;
-	if (!str)
-		return (0);
-	while (str[len] != '\0' && str[len] != c)
-		len++;
-	return (len);
-}
-
-char			*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*d;
-	size_t	i;
-	size_t	len;
-
-	len = ft_strlen_sc(s1, '\0') + ft_strlen_sc(s2, '\0');
-	if (!(d = (char *)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
 	i = 0;
-	while (s1 && *s1 != '\0')
-		d[i++] = *s1++;
-	while (s2 && *s2 != '\0')
-		d[i++] = *s2++;
-	d[i] = '\0';
-	return (d);
+	while (s[i])
+		i++;
+	return (i);
 }
 
-char			*ft_substr(const char *s, unsigned int start, size_t len)
+char		*ft_strcpy(char *dest, const char *src)
 {
-	char	*str;
-	char	*tmp;
-	char	*cpy;
+	int i;
 
-	if (!s || !(tmp = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	if (start > ft_strlen_sc(s, '\0'))
-		tmp[0] = '\0';
-	else
+	i = 0;
+	while (src[i] != '\0')
 	{
-		str = (char *)s + start;
-		cpy = tmp;
-		while (len-- > 0 && *str)
-			*cpy++ = *str++;
-		*cpy = '\0';
+		dest[i] = src[i];
+		i++;
 	}
-	return (tmp);
+	dest[i] = '\0';
+	return (dest);
+}
+
+char		*ft_strcat(char *s1, const char *s2)
+{
+	int i;
+	int j;
+
+	i = ft_strlen(s1);
+	j = 0;
+	while (s2[j] != '\0')
+	{
+		s1[i] = s2[j];
+		j++;
+		i++;
+	}
+	s1[i] = '\0';
+	return (s1);
+}
+
+void		ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+		((char *)s)[i++] = 0;
+}
+
+char		*ft_strnew(size_t size)
+{
+	char	*new;
+
+	if ((new = (char *)malloc(size + 1)) == NULL)
+		return (NULL);
+	ft_bzero(new, size);
+	return (new);
 }

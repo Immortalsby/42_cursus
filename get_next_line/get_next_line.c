@@ -6,79 +6,156 @@
 /*   By: bshi <sby945913@gmail.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 23:38:57 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/18 20:43:21 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/21 18:57:26 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
+/*
+** Code a optimiser, mais le but est de malloc assez place for line
+*/
 
-static	int		pos_line_end(char *s)
+static int		expand(char **tmp, int *count, char **line, int i)
 {
-	int	pos;
-
-	pos = -1;
-	while (s[++pos] != '\0')
-		if (s[pos] == '\n')
-			return (pos);
-	return (-1);
-}
-
-static	int		if_line_end(char *str)
-{
-	while (*str != '\0')
-		if (*str++ == '\n')
-			return (1);
+	count = count + 1;
+	tmp[0][i] = '\0';
+	ft_strcpy(tmp[1], *line);
+	free(*line);
+	if ((*line = ft_strnew((*count + 1) * BUFFER_SIZE)) == NULL)
+		return (-1);
+	ft_strcpy(*line, tmp[1]);
+	free(tmp[1]);
+	if ((tmp[1] = ft_strnew((*count + 1) * BUFFER_SIZE)) == NULL)
+		return (-1);
+	ft_strcat(*line, tmp[0]);
 	return (0);
 }
 
-static	void	put_in_line(char **readed, char **line)
-{
-	int		pos;
-	char	*tmp;
-	char	*res;
+/*
+** check si cest la fin (\n)
+*/
 
-	pos = pos_line_end(*readed);
-	tmp = *readed;
-	if (pos >= 0)
+static int		if_end(char **line, char *readed, char **fr)
+{
+	char		*tmp;
+	int			index[2];
+
+	index[0] = -1;
+	if ((tmp = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1)) == NULL)
+		return (-1);
+	while (readed[++index[0]] != '\n' && readed[index[0]] != '\0')
+		tmp[index[0]] = readed[index[0]];
+	tmp[index[0]] = '\0';
+	ft_strcpy(*line, tmp);
+	free(tmp);
+	tmp = NULL;
+	if (readed[index[0]] == '\0')
+		ft_bzero(readed, BUFFER_SIZE);
+	if (readed[index[0]] == '\n')
 	{
-		res = ft_substr(tmp, 0, pos);
-		*readed = ft_substr(tmp, pos + 1, ft_strlen_sc(tmp, '\0'));
+		index[1] = 0;
+		while (readed[index[0]++] != '\0')
+			readed[index[1]++] = readed[index[0]];
+		if (fr)
+		{
+			free(fr[2]);
+			free(fr);
+		}
+		return (1);
+	}
+	return (0);
+}
+
+/*
+** free tmp et voir si tout le fichier est fini de lire
+*/
+
+static int		del_mem(int i, char **fr, char *readed, char **line)
+{
+	int		j;
+
+	j = 0;
+	free(fr[0]);
+	free(fr[1]);
+	if (i == -1)
+		return (-1);
+	else if (fr[2][i] == '\n')
+	{
+		while (fr[2][++i])
+			readed[j++] = fr[2][i];
+		readed[j] = '\0';
+		free(fr[2]);
+		free(fr);
+		return (1);
+	}
+	else if (readed[0] != '\0' && i == 0)
+		if (if_end(line, readed, fr))
+			return (1);
+	free(fr[2]);
+	free(fr);
+	if (*line[0] == '\0' && readed[0] == '\0')
+	{
+		return (0);
+	}
+	else 
+		return (1);
+}
+
+/*
+** check tout!! et malloc pour tmp et line
+*/
+
+static int		checker(char **tmp, char **line, char **readed, int fd)
+{
+	if (fd <= -1 || fd >= FD || !line ||
+			(tmp == NULL)
+			|| (*line = ft_strnew(BUFFER_SIZE)) == NULL)
+		return (-1);
+	if (*readed)
+	{
+		if (if_end(line, *readed, NULL))
+		{
+			free(tmp);
+			return (1);
+		}
 	}
 	else
 	{
-		res = ft_substr(tmp, 0, ft_strlen_sc(tmp, '\n'));
-		*readed = NULL;
+		if ((*readed = ft_strnew(BUFFER_SIZE)) == NULL)
+		{
+			free(tmp);
+			return (-1);
+		}
 	}
-	free(tmp);
-	*line = res;
+	return (0);
 }
 
 int				get_next_line(int fd, char **line)
 {
-	static char		*readed[FD];
-	char			buff[BUFFER_SIZE + 1];
-	int				f_size;
-	char			*tmp;
+	char				**tmp;
+	static	char		*readed[FD];
+	int					i;
+	int					count;
 
-	if (fd < 0 || fd >= FD || BUFFER_SIZE <= 0 || read(fd, NULL, 0))
-		return (-1);
-	while ((f_size = read(fd, buff, BUFFER_SIZE)) > 0)
+	tmp = (char **)malloc(sizeof(char *) * 3);
+	if ((i = checker(tmp, line, &readed[fd], fd)) != 0)
+		return (i);
+	i = -1;
+	while (++i < 3)
+		if ((tmp[i] = (char *)malloc((sizeof(char) * BUFFER_SIZE + 1))) == NULL)
+			return (-1);
+	count = 0;
+	while ((i = read(fd, tmp[2], BUFFER_SIZE)) > 0)
 	{
-		buff[f_size] = '\0';
-		tmp = ft_strjoin(readed[fd], buff);
-		if (readed[fd])
-		{
-			free(readed[fd]);
-			readed[fd] = NULL;
-		}
-		readed[fd] = tmp;
-		if (if_line_end(readed[fd]))
+		tmp[2][i] = '\0';
+		i = -1;
+		while (tmp[2][++i] && tmp[2][i] != '\n')
+			tmp[0][i] = tmp[2][i];
+		if ((expand(tmp, &count, line, i)) == -1)
+			return (-1);
+		if (tmp[2][i] == '\n')
 			break ;
 	}
-	if (*readed[fd] == '\0' || !readed[fd])
-		return (0);
-	if (f_size < 0)
-		return (-1);
-	put_in_line(&readed[fd], line);
-	return (1);
+	return (del_mem(i, tmp, readed[fd], line));
 }

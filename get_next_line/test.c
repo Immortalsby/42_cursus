@@ -2,37 +2,23 @@
 #include "get_next_line.h"
 #include <fcntl.h>
 
-/*int		main(int ac, char **argv)
+int		main(int ac, char **argv)
 {
 	char	*line;
 	int		fd;
-	int		i = 0;
-	int		j = 0;
 
 	ac++;
 	fd = open(argv[1], O_RDONLY);
-	while (i < 20)
+	while ((get_next_line(fd, &line) > -1) && line)
 	{
-		j = get_next_line(fd, &line);
-		printf("%d\n", j);
 		printf("%s\n", line);
 		free(line);
 		line = NULL;
-		j = 0;
-	while (j < 20)
-		{
-			get_next_line(42, &line);
-			printf("%s\n", line);
-			free(line);
-			j++;
-		}
-		i++;
 	}
-	while (1);
 	return (0);
 }
-*/
-int main()
+
+/* int main()
 {
  	int fd[2];
  	int	i = 0;
@@ -54,4 +40,4 @@ int main()
  	close(fd[0]);
  	close(fd[1]);
  	return (0);
-}
+}*/
