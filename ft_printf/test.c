@@ -3,8 +3,9 @@
 int main(){
 
 	int str=+42;
-	printf("%+04d", str);
+	int n=5;
+	printf("%*d", n, str);
 	printf("\n");
-	printf("%-+04d", str);
+	printf("%*d", n, str);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utiles.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: bshi <bshi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:15:06 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/12 19:54:37 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/22 13:15:13 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
+}
+
+int		ft_rputchar(int len, char c)
+{
+	int i;
+
+	i = -1;
+	while (++i < len)
+		ft_putchar(c);
+	return (i);
 }
 
 int		ft_putstrlen(char *str)
@@ -47,4 +57,11 @@ int		ft_puthex(long unsigned int n, char *hex, int i)
 		i = ft_max(i, ft_puthex(n / 16, hex, i));
 	ft_putchar(hex[n % 16]);
 	return (i);
+}
+
+int		ft_isnbr(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

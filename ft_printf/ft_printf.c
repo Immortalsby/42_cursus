@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshi <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: bshi <bshi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:20:41 by bshi              #+#    #+#             */
-/*   Updated: 2019/10/13 22:54:36 by bshi             ###   ########.fr       */
+/*   Updated: 2019/10/22 13:06:14 by bshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,70 +18,98 @@
 ** va_end 在有些实现中可能会把arg改成无效值，这里，是把arg指针指向了 NULL,避免出现野指针   
 */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
-void	ft_putchar(char c);
-int		ft_putstrlen(char *str);
-int		ft_puthex(long unsigned int n, char *hex, int i);
-char	*ft_itoa(long i);
-
-int		ft_printf(const char *format, ...)
+int		ft_printf(const char *str, ...)
 {
-	int		count;
-	char	next;
+	t_print	*t;
+	int		i;
+	int		j;
 	va_list	ap;
 
-	count = 0;
-	va_start(ap, format);
-	while (*format)
+	if (!(t = (t_print *)malloc(sizeof(t_print))))
+		return (0);
+	print_init(t);
+	i = 0;
+	while (str[i])
 	{
-		next = *format;
-		if (next == '%')
-		{
-			if (*++format == 'c')
-			{
-				ft_putchar((char)va_arg(ap, int));
-				count++;
-			}
-			else if (*format == 's')
-			{
-				count += ft_putstrlen(va_arg(ap, char *));
-			}
-			else if (*format == 'p')
-			{
-				ft_putstrlen("0x");
-				count += 2;
-				count += ft_puthex(va_arg(ap, long unsigned int),
-						"0123456789abcdef", 0);
-			}
-			else if (*format == 'd' || *format == 'i')
-			{
-				count += ft_putstrlen(ft_itoa(va_arg(ap, int)));
-			}
-			else if (*format == 'u')
-			{
-					count += ft_putstrlen(ft_itoa((unsigned int )(va_arg(ap, unsigned int))));
-			}
-			else if (*format == 'x')
-			{
-				count += ft_puthex(va_arg(ap, long unsigned int),
-						"0123456789abcdef", 0);
-			}
-			else if (*format == 'X')
-			{
-				count += ft_puthex(va_arg(ap, long unsigned int),
-						"0123456789ABCDEF", 0);	
-			}
-		}
+		if (t->percent == 0)
+			j += print_percent();
 		else
-		{
-			ft_putchar(*format);
-			count++;
-		}
-		format++;
+			j += print_nonpercent();
 	}
-	va_end(ap);
-	return (count);
 }
+
+
+
+
+
+
+
+
+
+
+// void	ft_putchar(char c);
+// int		ft_putstrlen(char *str);
+// int		ft_puthex(long unsigned int n, char *hex, int i);
+// char	*ft_itoa(long i);
+
+// int		ft_printf(const char *format, ...)
+// {
+// 	int		count;
+// 	char	next;
+// 	va_list	ap;
+
+// 	count = 0;
+// 	va_start(ap, format);
+// 	while (*format)
+// 	{
+// 		next = *format;
+// 		if (next == '%')
+// 		{
+// 			if (*++format == 'c')
+// 			{
+// 				ft_putchar((char)va_arg(ap, int));
+// 				count++;
+// 			}
+// 			else if (*format == 's')
+// 			{
+// 				count += ft_putstrlen(va_arg(ap, char *));
+// 			}
+// 			else if (*format == 'p')
+// 			{
+// 				ft_putstrlen("0x");
+// 				count += 2;
+// 				count += ft_puthex(va_arg(ap, long unsigned int),
+// 						"0123456789abcdef", 0);
+// 			}
+// 			else if (*format == 'd' || *format == 'i')
+// 			{
+// 				count += ft_putstrlen(ft_itoa(va_arg(ap, int)));
+// 			}
+// 			else if (*format == 'u')
+// 			{
+// 					count += ft_putstrlen(ft_itoa((unsigned int )(va_arg(ap, unsigned int))));
+// 			}
+// 			else if (*format == 'x')
+// 			{
+// 				count += ft_puthex(va_arg(ap, long unsigned int),
+// 						"0123456789abcdef", 0);
+// 			}
+// 			else if (*format == 'X')
+// 			{
+// 				count += ft_puthex(va_arg(ap, long unsigned int),
+// 						"0123456789ABCDEF", 0);	
+// 			}
+// 		}
+// 		else
+// 		{
+// 			ft_putchar(*format);
+// 			count++;
+// 		}
+// 		format++;
+// 	}
+// 	va_end(ap);
+// 	return (count);
+// }
 
